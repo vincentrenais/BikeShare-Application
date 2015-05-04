@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B74C9C331AF81F4700C20C59 /* StationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B74C9C321AF81F4700C20C59 /* StationManager.m */; };
+		B74C9C361AF8203200C20C59 /* HTTPCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = B74C9C351AF8203200C20C59 /* HTTPCommunication.m */; };
 		B7BD05D71AF7D7770060E2B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD05D61AF7D7770060E2B5 /* main.m */; };
 		B7BD05DA1AF7D7770060E2B5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD05D91AF7D7770060E2B5 /* AppDelegate.m */; };
-		B7BD05DD1AF7D7770060E2B5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD05DC1AF7D7770060E2B5 /* ViewController.m */; };
 		B7BD05E01AF7D7770060E2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7BD05DE1AF7D7770060E2B5 /* Main.storyboard */; };
 		B7BD05E21AF7D7770060E2B5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7BD05E11AF7D7770060E2B5 /* Images.xcassets */; };
 		B7BD05E51AF7D7770060E2B5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BD05E31AF7D7770060E2B5 /* LaunchScreen.xib */; };
 		B7BD05F11AF7D7770060E2B5 /* BikeShareAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD05F01AF7D7770060E2B5 /* BikeShareAppTests.m */; };
+		B7BD05FE1AF7E2AA0060E2B5 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD05FD1AF7E2AA0060E2B5 /* MapViewController.m */; };
+		B7BD06011AF7E2D00060E2B5 /* MoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD06001AF7E2D00060E2B5 /* MoreInfoViewController.m */; };
+		B7BD06031AF7E5810060E2B5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD06021AF7E5810060E2B5 /* MapKit.framework */; };
+		B7BD06051AF7E5BE0060E2B5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B7BD06041AF7E5BE0060E2B5 /* CoreLocation.framework */; };
+		B7BD06081AF8005E0060E2B5 /* Station.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD06071AF8005E0060E2B5 /* Station.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +33,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B74C9C311AF81F4700C20C59 /* StationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationManager.h; path = Model/StationManager.h; sourceTree = "<group>"; };
+		B74C9C321AF81F4700C20C59 /* StationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationManager.m; path = Model/StationManager.m; sourceTree = "<group>"; };
+		B74C9C341AF8203200C20C59 /* HTTPCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPCommunication.h; path = Model/HTTPCommunication.h; sourceTree = "<group>"; };
+		B74C9C351AF8203200C20C59 /* HTTPCommunication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTPCommunication.m; path = Model/HTTPCommunication.m; sourceTree = "<group>"; };
 		B7BD05D11AF7D7770060E2B5 /* BikeShareApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BikeShareApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7BD05D51AF7D7770060E2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7BD05D61AF7D7770060E2B5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B7BD05D81AF7D7770060E2B5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B7BD05D91AF7D7770060E2B5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B7BD05DB1AF7D7770060E2B5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B7BD05DC1AF7D7770060E2B5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B7BD05DF1AF7D7770060E2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7BD05E11AF7D7770060E2B5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B7BD05E41AF7D7770060E2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		B7BD05EA1AF7D7770060E2B5 /* BikeShareAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BikeShareAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7BD05EF1AF7D7770060E2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7BD05F01AF7D7770060E2B5 /* BikeShareAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BikeShareAppTests.m; sourceTree = "<group>"; };
+		B7BD05FC1AF7E2AA0060E2B5 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapViewController.h; path = Controller/MapViewController.h; sourceTree = "<group>"; };
+		B7BD05FD1AF7E2AA0060E2B5 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapViewController.m; path = Controller/MapViewController.m; sourceTree = "<group>"; };
+		B7BD05FF1AF7E2D00060E2B5 /* MoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreInfoViewController.h; path = Controller/MoreInfoViewController.h; sourceTree = "<group>"; };
+		B7BD06001AF7E2D00060E2B5 /* MoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreInfoViewController.m; path = Controller/MoreInfoViewController.m; sourceTree = "<group>"; };
+		B7BD06021AF7E5810060E2B5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		B7BD06041AF7E5BE0060E2B5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		B7BD06061AF8005E0060E2B5 /* Station.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Station.h; path = Model/Station.h; sourceTree = "<group>"; };
+		B7BD06071AF8005E0060E2B5 /* Station.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Station.m; path = Model/Station.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7BD06051AF7E5BE0060E2B5 /* CoreLocation.framework in Frameworks */,
+				B7BD06031AF7E5810060E2B5 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +81,10 @@
 		B7BD05C81AF7D7770060E2B5 = {
 			isa = PBXGroup;
 			children = (
+				B7BD06041AF7E5BE0060E2B5 /* CoreLocation.framework */,
+				B7BD06021AF7E5810060E2B5 /* MapKit.framework */,
+				B7BD05FB1AF7E24F0060E2B5 /* Controller */,
+				B7BD05FA1AF7E2460060E2B5 /* Model */,
 				B7BD05D31AF7D7770060E2B5 /* BikeShareApp */,
 				B7BD05ED1AF7D7770060E2B5 /* BikeShareAppTests */,
 				B7BD05D21AF7D7770060E2B5 /* Products */,
@@ -83,8 +105,6 @@
 			children = (
 				B7BD05D81AF7D7770060E2B5 /* AppDelegate.h */,
 				B7BD05D91AF7D7770060E2B5 /* AppDelegate.m */,
-				B7BD05DB1AF7D7770060E2B5 /* ViewController.h */,
-				B7BD05DC1AF7D7770060E2B5 /* ViewController.m */,
 				B7BD05DE1AF7D7770060E2B5 /* Main.storyboard */,
 				B7BD05E11AF7D7770060E2B5 /* Images.xcassets */,
 				B7BD05E31AF7D7770060E2B5 /* LaunchScreen.xib */,
@@ -117,6 +137,30 @@
 				B7BD05EF1AF7D7770060E2B5 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B7BD05FA1AF7E2460060E2B5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7BD06061AF8005E0060E2B5 /* Station.h */,
+				B7BD06071AF8005E0060E2B5 /* Station.m */,
+				B74C9C311AF81F4700C20C59 /* StationManager.h */,
+				B74C9C321AF81F4700C20C59 /* StationManager.m */,
+				B74C9C341AF8203200C20C59 /* HTTPCommunication.h */,
+				B74C9C351AF8203200C20C59 /* HTTPCommunication.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B7BD05FB1AF7E24F0060E2B5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B7BD05FC1AF7E2AA0060E2B5 /* MapViewController.h */,
+				B7BD05FD1AF7E2AA0060E2B5 /* MapViewController.m */,
+				B7BD05FF1AF7E2D00060E2B5 /* MoreInfoViewController.h */,
+				B7BD06001AF7E2D00060E2B5 /* MoreInfoViewController.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,7 +263,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7BD05DD1AF7D7770060E2B5 /* ViewController.m in Sources */,
+				B7BD05FE1AF7E2AA0060E2B5 /* MapViewController.m in Sources */,
+				B74C9C361AF8203200C20C59 /* HTTPCommunication.m in Sources */,
+				B7BD06081AF8005E0060E2B5 /* Station.m in Sources */,
+				B74C9C331AF81F4700C20C59 /* StationManager.m in Sources */,
+				B7BD06011AF7E2D00060E2B5 /* MoreInfoViewController.m in Sources */,
 				B7BD05DA1AF7D7770060E2B5 /* AppDelegate.m in Sources */,
 				B7BD05D71AF7D7770060E2B5 /* main.m in Sources */,
 			);
@@ -416,6 +464,7 @@
 				B7BD05F61AF7D7770060E2B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B7BD05F71AF7D7780060E2B5 /* Build configuration list for PBXNativeTarget "BikeShareAppTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +473,7 @@
 				B7BD05F91AF7D7780060E2B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
