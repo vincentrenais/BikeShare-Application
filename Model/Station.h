@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Vincent Renais. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 @interface Station : NSObject
 

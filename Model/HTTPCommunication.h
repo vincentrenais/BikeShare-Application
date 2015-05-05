@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Vincent Renais. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
-@interface HTTPCommunication : NSObject<NSURLSessionDownloadDelegate>
+@interface HTTPCommunication : NSObject <NSURLSessionDownloadDelegate>
 
 // successBlock will contain the block you're going to call when the request is completed
 
@@ -16,10 +16,13 @@
 
 // Craft and request using NSURLRequest and NSURLConnection
 
-- (void) retrieveURL:(NSURL *)url successBlock:(void (^)(NSData *))successBlock;
+- (void) retrieveURL:(NSURL *)url
+        successBlock:(void (^)(NSData *))successBlock;
 
 // Task has finished downloading delegate  method
 
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location;
+-(void)URLSession           :(NSURLSession *)session
+                downloadTask:(NSURLSessionDownloadTask *)downloadTask
+   didFinishDownloadingToURL:(NSURL *)location;
 
 @end

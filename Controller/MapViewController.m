@@ -12,6 +12,8 @@
 
 @interface MapViewController ()
 
+@property (strong,nonatomic) NSMutableArray *arrayOfStations;
+
 @end
 
 @implementation MapViewController
@@ -20,10 +22,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [[StationManager sharedList] requestURL];
-    NSLog(@"%@",[StationManager sharedList].arrayOfStations);
-    
     // Do any additional setup after loading the view, typically from a nib.
+    
     _mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     
     [self.view addSubview:_mapView];
@@ -40,6 +40,19 @@
     self.mapView.showsPointsOfInterest = YES;
 }
 
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [[StationManager sharedList] requestURLWithSuccess:^(NSMutableArray *array)
+     {
+         self.arrayOfStations = array;
+         NSLog(@"%@",self.arrayOfStations);
+     } failure:^(NSError *error)
+     {
+         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
+         [alert show];
+     }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

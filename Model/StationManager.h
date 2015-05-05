@@ -6,18 +6,16 @@
 //  Copyright (c) 2015 Vincent Renais. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+
 #import "Station.h"
 #import "HTTPCommunication.h"
 
-@interface StationManager : NSObject
-
-@property (strong,nonatomic) HTTPCommunication *http;
-@property (strong,nonatomic) Station *station;
+@interface StationManager : HTTPCommunication
 
 @property (strong,nonatomic) NSMutableArray *arrayOfStations;
 
--(void)requestURL;
+- (void)requestURLWithSuccess:(void (^)(NSMutableArray *array))success failure:(void (^)(NSError *error))failure;
 
 + (instancetype)sharedList;
 

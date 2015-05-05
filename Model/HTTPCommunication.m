@@ -10,7 +10,8 @@
 
 @implementation HTTPCommunication
 
-- (void) retrieveURL:(NSURL *)url successBlock:(void (^)(NSData *))successBlock
+- (void) retrieveURL:(NSURL *)url
+        successBlock:(void (^)(NSData *))successBlock
 {
     // Persisting given successBlock for calling later
     self.successBlock = successBlock;
@@ -33,7 +34,9 @@
 
 
 
--(void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location
+-(void)URLSession           :(NSURLSession *)session
+                downloadTask:(NSURLSessionDownloadTask *)downloadTask
+   didFinishDownloadingToURL:(NSURL *)location
 {
     // Getting the download data from the local storage
     NSData *data = [NSData dataWithContentsOfURL:location];
@@ -41,8 +44,6 @@
     // Ensure that you call the successBlock for the main thread by using the dispatch
     dispatch_async(dispatch_get_main_queue(), ^{ self.successBlock(data); });
         // Calling the block stored before as a callback
-    
-
 }
 
 
