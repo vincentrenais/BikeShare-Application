@@ -23,11 +23,12 @@
     MapViewController *mapViewController = [[MapViewController alloc]init];
     mapViewController.title = @"Maps";
     
-    UIViewController *moreInfoViewController = [[UIViewController alloc]init];
+    MoreInfoViewController *moreInfoViewController = [[MoreInfoViewController alloc]init];
     moreInfoViewController.title = @"More Info";
     
-    mapViewController.view.backgroundColor = [UIColor blueColor];
-    moreInfoViewController.view.backgroundColor = [UIColor redColor];
+    mapViewController.view.backgroundColor = [UIColor whiteColor];
+    
+    moreInfoViewController.view.backgroundColor = [UIColor whiteColor];
     
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
     

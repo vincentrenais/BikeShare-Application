@@ -12,11 +12,22 @@
 
 @implementation StationManager
 
++ (instancetype)sharedList
+{
+    static StationManager  *stationList = nil;
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+        stationList = [[StationManager alloc] init];
+    });
+    return stationList;
+}
+
+
 -(void)requestURL
 {
-
-    
     self.http = [[HTTPCommunication alloc]init];
+    self.station = [[Station alloc]init];
+    self.arrayOfStations = [[NSMutableArray alloc]init];
     
     NSURL *url = [NSURL URLWithString:BASE_URL];
 
@@ -33,32 +44,29 @@
          {
              NSArray *results = [stationsListJSON objectForKey:@"stationBeanList"];
              
-             self.arrayOfStations = [[NSMutableArray alloc]init];
-             
              for (NSDictionary *dicts in results)
              {
-                 NSNumber *stationID = dicts[@"id"];
-                 NSString *stationName = dicts[@"stationName"];
-                 NSNumber *availableDocks = dicts[@"availableDocks"];
-                 NSNumber *latitude = dicts[@"latitude"];
-                 NSNumber *longitude = dicts[@"longitude"];
-                 NSString *statusValue = dicts[@"statusValue"];
-                 NSNumber *availableBikes = dicts[@"availableBikes"];
+                 self.station.stationID = dicts[@"id"];
+                 self.station.stationName = dicts[@"stationName"];
+                 self.station.availableDocks = dicts[@"availableDocks"];
+                 self.station.latitude = dicts[@"latitude"];
+                 self.station.longitude = dicts[@"longitude"];
+                 self.station.statusValue = dicts[@"statusValue"];
+                 self.station.availableBikes = dicts[@"availableBikes"];
                  
-                 NSDictionary *dict = @{@"stationID" : stationID,
-                                    @"stationName" : stationName,
-                                    @"availableDocks" : availableDocks,
-                                    @"latitude" : latitude,
-                                    @"longitude" : longitude,
-                                    @"statusValue" : statusValue,
-                                    @"availableBikes" : availableBikes};
-             
-                 [self.arrayOfStations addObject:dict];
-                 NSLog(@"%@",self.arrayOfStations);
+                 NSDictionary *dict = @{@"stationID" : self.station.stationID,
+                                    @"stationName" : self.station.stationName,
+                                    @"availableDocks" : self.station.availableDocks,
+                                    @"latitude" : self.station.latitude,
+                                    @"longitude" : self.station.longitude,
+                                    @"statusValue" : self.station.statusValue,
+                                    @"availableBikes" : self.station.availableBikes};
+                 
+                 
+                 [[StationManager sharedList].arrayOfStations addObject:dict];
              }
-             
+             NSLog(@"%@",[StationManager sharedList].arrayOfStations);
          }
      }];
-    
 }
 @end

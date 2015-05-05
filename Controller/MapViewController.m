@@ -16,13 +16,30 @@
 
 @implementation MapViewController
 
-- (void)viewDidLoad
-{
+
+- (void)viewDidLoad {
     [super viewDidLoad];
-    StationManager *stationManager = [[StationManager alloc]init];
-    [stationManager requestURL];
     
+    [[StationManager sharedList] requestURL];
+    NSLog(@"%@",[StationManager sharedList].arrayOfStations);
+    
+    // Do any additional setup after loading the view, typically from a nib.
+    _mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
+    
+    [self.view addSubview:_mapView];
+    self.mapView.delegate = self;
+    self.locationManager = [[CLLocationManager alloc] init];
+    
+    if(IS_OS_8_OR_LATER) {
+        [self.locationManager requestWhenInUseAuthorization];
+        [self.locationManager requestAlwaysAuthorization];
+    }
+    [self.locationManager startUpdatingLocation];
+    
+    self.mapView.showsUserLocation = YES;
+    self.mapView.showsPointsOfInterest = YES;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

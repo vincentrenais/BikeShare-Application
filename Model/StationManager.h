@@ -13,9 +13,13 @@
 @interface StationManager : NSObject
 
 @property (strong,nonatomic) HTTPCommunication *http;
-@property (strong,nonatomic) NSNumber *responseID;
+@property (strong,nonatomic) Station *station;
+
 @property (strong,nonatomic) NSMutableArray *arrayOfStations;
 
 -(void)requestURL;
+
++ (instancetype)sharedList;
+
 
 @end

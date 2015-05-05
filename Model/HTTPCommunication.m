@@ -39,10 +39,10 @@
     NSData *data = [NSData dataWithContentsOfURL:location];
     
     // Ensure that you call the successBlock for the main thread by using the dispatch
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{ self.successBlock(data); });
         // Calling the block stored before as a callback
-        self.successBlock(data);
-    });
+    
+
 }
 
 
