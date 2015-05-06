@@ -12,7 +12,7 @@
 
 @interface MapViewController ()
 
-@property (strong,nonatomic) NSMutableArray *arrayOfStations;
+
 
 @end
 
@@ -36,22 +36,41 @@
     }
     [self.locationManager startUpdatingLocation];
     
+    
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = YES;
+    
+    
+    
 }
 
 
-- (void)viewDidAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     [[StationManager sharedList] requestURLWithSuccess:^(NSMutableArray *array)
-     {
-         self.arrayOfStations = array;
-         NSLog(@"%@",self.arrayOfStations);
-     } failure:^(NSError *error)
-     {
-         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
-         [alert show];
-     }];
+    {
+        self.arrayOfStations = array;
+        
+        for (Station *station in self.arrayOfStations) {
+            MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc]init];
+            myAnnotation.coordinate = CLLocationCoordinate2DMake([station.latitude floatValue], [station.longitude floatValue]);
+            myAnnotation.title = station.stationName;
+            myAnnotation.subtitle = [NSString stringWithFormat:@"Bikes: %@ - Docks: %@", station.availableBikes, station.availableDocks];
+            [self.mapView addAnnotation:myAnnotation];
+        }
+        
+//        NSLog(@"%@",self.arrayOfStations);
+    }
+                                               failure:^(NSError *error)
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
+        [alert show];
+    }];
+}
+
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.02f, 0.02f)) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

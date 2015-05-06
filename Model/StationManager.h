@@ -13,11 +13,11 @@
 
 @interface StationManager : HTTPCommunication
 
+
 @property (strong,nonatomic) NSMutableArray *arrayOfStations;
 
 - (void)requestURLWithSuccess:(void (^)(NSMutableArray *array))success failure:(void (^)(NSError *error))failure;
 
 + (instancetype)sharedList;
-
 
 @end

@@ -8,14 +8,13 @@
 
 @import Foundation;
 
-@interface Station : NSObject
+#import "Location.h"
 
-@property (strong,nonatomic) NSNumber *stationID;
+@interface Station : Location
+
 @property (strong,nonatomic) NSString *stationName;
 @property (strong,nonatomic) NSNumber *availableDocks;
 @property (strong,nonatomic) NSNumber *availableBikes;
 @property (strong,nonatomic) NSString *statusValue;
-@property (strong,nonatomic) NSNumber *latitude;
-@property (strong,nonatomic) NSNumber *longitude;
 
 @end

@@ -48,7 +48,7 @@
              {
                  Station *station = [[Station alloc]init];
                  
-                 station.stationID = dicts[@"id"];
+                 station.id = dicts[@"id"];
                  station.stationName = dicts[@"stationName"];
                  station.availableDocks = dicts[@"availableDocks"];
                  station.latitude = dicts[@"latitude"];

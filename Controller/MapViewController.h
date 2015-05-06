@@ -18,8 +18,7 @@
 @interface MapViewController : UIViewController <MKMapViewDelegate,CLLocationManagerDelegate>
 
 @property (strong,nonatomic) MKMapView *mapView;
-
 @property (strong,nonatomic) CLLocationManager *locationManager;
-
+@property (strong,nonatomic) NSMutableArray *arrayOfStations;
 
 @end
