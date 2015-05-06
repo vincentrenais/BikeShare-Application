@@ -13,6 +13,4 @@
 @interface MoreInfoViewController : UIViewController
 
 
-
-
 @end

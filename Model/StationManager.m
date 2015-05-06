@@ -42,8 +42,6 @@
          {
              NSArray *results = [stationsListJSON objectForKey:@"stationBeanList"];
              
-             //[[StationManager sharedList].arrayOfStations removeAllObjects];
-             
              for (NSDictionary *dicts in results)
              {
                  Station *station = [[Station alloc]init];
@@ -77,7 +75,5 @@
     
     return;
 }
-
-
 
 @end
