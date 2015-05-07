@@ -10,11 +10,14 @@
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
+@interface MapViewController ()
+
+@property MKRoute *routeDetails;
+
+@end
+
+
 @implementation MapViewController
-{
-    MKRoute *routeDetails;
-//    MKPlacemark *placemark;
-}
 
 
 - (void)viewDidLoad {
@@ -33,13 +36,8 @@
         [self.locationManager requestAlwaysAuthorization];
     }
     [self.locationManager startUpdatingLocation];
-    
-    
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = YES;
-    
-    
-
 }
 
 
@@ -52,13 +50,10 @@
         for (Station *station in self.arrayOfStations) {
             MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc]init];
             myAnnotation.coordinate = station.coordinate;
-//            placemark = [[MKPlacemark alloc] initWithCoordinate:station.coordinate addressDictionary:nil];
-//            NSLog(@"%@",placemark);
-//            myAnnotation.coordinate = CLLocationCoordinate2DMake([station.latitude doubleValue], [station.longitude doubleValue]);
-            myAnnotation.title = station.stationName;
-            myAnnotation.subtitle = [NSString stringWithFormat:@"Bikes: %@ - Docks: %@", station.availableBikes, station.availableDocks];
+            myAnnotation.title = @"<- Turn by turn - Route ->";
+            station.stationName = [station.stationName substringToIndex:15];
+            myAnnotation.subtitle = [NSString stringWithFormat:@"%@... - %@ bikes - %@ docks", station.stationName, station.availableBikes, station.availableDocks];
             [self.mapView addAnnotation:myAnnotation];
-        
         }
     }
                                                failure:^(NSError *error)
@@ -66,14 +61,16 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"It didn't work!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"ok", nil];
         [alert show];
     }];
-    
-    
 }
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
-    [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.02f, 0.02f)) animated:YES];
+    static dispatch_once_t token;
+    dispatch_once(&token, ^{
+       [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
+    });
 }
+
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
@@ -90,7 +87,7 @@
         MKAnnotationView *pinView = (MKAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
         if (!pinView)
         {
-            // If an existing pin view was not available, create one.
+            // The following creates a pin view if an existing pin view was not available.
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
             //pinView.animatesDrop = YES;
             pinView.canShowCallout = YES;
@@ -100,34 +97,59 @@
             pinView.annotation = annotation;
         }
         
-        // Add a detail disclosure button to the callout.
-        
+        // Add a button to the callout.
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//        [rightButton addTarget:self action:@selector(routeToStation:) forControlEvents:UIControlEventTouchUpInside];
         pinView.rightCalloutAccessoryView = rightButton;
         
-        
-        // Add an image to the left callout.
-        UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bikeshare_pin.png"]];
+        // Add an image on the left.
+        UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"turn_by_turn.png"]];
         pinView.leftCalloutAccessoryView = iconView;
+        iconView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *reg = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(CallMapsApp)];
+        [iconView addGestureRecognizer:reg];
         
         return pinView;
     }
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+//- (void)didTapImageView:(UITapGestureRecognizer *)sender
+//{
+//
+//    id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
+//    CLLocationCoordinate2D coord = [annotation coordinate];
+//    
+//    MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+//    
+//    MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+//    
+//    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
+//
+//    
+//    NSLog(@"%f", coord.latitude);
+//}
+
+- (void)CallMapsApp
 {
-    NSLog(@"SELECT");
+        id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
+    
+        MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+    
+        MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    
+        [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
+    
 }
+
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
-    [mapView removeOverlay:routeDetails.polyline];
+    [mapView removeOverlay:self.routeDetails.polyline];
     
     id<MKAnnotation> annotation = view.annotation;
-    
+
     MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+    
     MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
     
     [directionsRequest setSource:[MKMapItem mapItemForCurrentLocation]];
@@ -146,19 +168,17 @@
         }
         else
         {
-            routeDetails = response.routes.lastObject;
-            [mapView addOverlay:routeDetails.polyline];
+            self.routeDetails = response.routes.lastObject;
+            [mapView addOverlay:self.routeDetails.polyline];
         }
     }];
 }
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    MKPolylineRenderer  * routeLineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:routeDetails.polyline];
+    MKPolylineRenderer  * routeLineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:self.routeDetails.polyline];
     routeLineRenderer.strokeColor = [UIColor redColor];
     routeLineRenderer.lineWidth = 5;
     return routeLineRenderer;
 }
-
-
 
 @end
