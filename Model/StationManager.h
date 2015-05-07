@@ -8,8 +8,10 @@
 
 @import Foundation;
 
+
 #import "Station.h"
 #import "HTTPCommunication.h"
+
 
 @interface StationManager : HTTPCommunication
 

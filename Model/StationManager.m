@@ -23,7 +23,7 @@
 }
 
 
--(void)requestURLWithSuccess:(void (^)(NSMutableArray *array))success failure:(void (^)(NSError *error))failure
+-(void)requestURLWithSuccess:(void (^)(NSMutableArray *array))success failure:(void (^)(NSError *error))failure;
 {
     //self.station = [[Station alloc]init];
     self.arrayOfStations = [[NSMutableArray alloc]init];
@@ -46,13 +46,14 @@
              {
                  Station *station = [[Station alloc]init];
                  
-                 station.id = dicts[@"id"];
+                 station.location = dicts[@"id"];
                  station.stationName = dicts[@"stationName"];
                  station.availableDocks = dicts[@"availableDocks"];
                  station.latitude = dicts[@"latitude"];
                  station.longitude = dicts[@"longitude"];
                  station.statusValue = dicts[@"statusValue"];
                  station.availableBikes = dicts[@"availableBikes"];
+                 station.coordinate = CLLocationCoordinate2DMake([station.latitude doubleValue], [station.longitude doubleValue]);
                  
                  [[StationManager sharedList].arrayOfStations addObject:station];
              }

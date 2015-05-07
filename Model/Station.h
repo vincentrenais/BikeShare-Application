@@ -17,4 +17,6 @@
 @property (strong,nonatomic) NSNumber *availableBikes;
 @property (strong,nonatomic) NSString *statusValue;
 
+
+
 @end

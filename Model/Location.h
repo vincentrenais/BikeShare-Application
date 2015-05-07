@@ -7,11 +7,15 @@
 //
 
 @import Foundation;
+@import MapKit;
 
-@interface Location : NSObject
 
-@property (strong,nonatomic) NSNumber *id;
+@interface Location : NSObject <MKAnnotation>
+
+@property (strong,nonatomic) NSNumber *location;
 @property (strong,nonatomic) NSNumber *latitude;
 @property (strong,nonatomic) NSNumber *longitude;
+
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 
 @end
