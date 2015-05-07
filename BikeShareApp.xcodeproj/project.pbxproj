@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		B7045F8F1AFAA561001A82A7 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = B7045F8E1AFAA561001A82A7 /* Location.m */; };
-		B7045F941AFAAF2C001A82A7 /* TurnByTurnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7045F931AFAAF2C001A82A7 /* TurnByTurnViewController.m */; };
 		B74C9C331AF81F4700C20C59 /* StationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B74C9C321AF81F4700C20C59 /* StationManager.m */; };
 		B74C9C361AF8203200C20C59 /* HTTPCommunication.m in Sources */ = {isa = PBXBuildFile; fileRef = B74C9C351AF8203200C20C59 /* HTTPCommunication.m */; };
 		B7BD05D71AF7D7770060E2B5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7BD05D61AF7D7770060E2B5 /* main.m */; };
@@ -37,8 +36,6 @@
 /* Begin PBXFileReference section */
 		B7045F8D1AFAA561001A82A7 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Location.h; path = Model/Location.h; sourceTree = "<group>"; };
 		B7045F8E1AFAA561001A82A7 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Location.m; path = Model/Location.m; sourceTree = "<group>"; };
-		B7045F921AFAAF2C001A82A7 /* TurnByTurnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TurnByTurnViewController.h; path = Controller/TurnByTurnViewController.h; sourceTree = "<group>"; };
-		B7045F931AFAAF2C001A82A7 /* TurnByTurnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TurnByTurnViewController.m; path = Controller/TurnByTurnViewController.m; sourceTree = "<group>"; };
 		B74C9C311AF81F4700C20C59 /* StationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationManager.h; path = Model/StationManager.h; sourceTree = "<group>"; };
 		B74C9C321AF81F4700C20C59 /* StationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationManager.m; path = Model/StationManager.m; sourceTree = "<group>"; };
 		B74C9C341AF8203200C20C59 /* HTTPCommunication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPCommunication.h; path = Model/HTTPCommunication.h; sourceTree = "<group>"; };
@@ -167,8 +164,6 @@
 				B7BD05FD1AF7E2AA0060E2B5 /* MapViewController.m */,
 				B7BD05FF1AF7E2D00060E2B5 /* MoreInfoViewController.h */,
 				B7BD06001AF7E2D00060E2B5 /* MoreInfoViewController.m */,
-				B7045F921AFAAF2C001A82A7 /* TurnByTurnViewController.h */,
-				B7045F931AFAAF2C001A82A7 /* TurnByTurnViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -283,7 +278,6 @@
 				B7BD06081AF8005E0060E2B5 /* Station.m in Sources */,
 				B74C9C331AF81F4700C20C59 /* StationManager.m in Sources */,
 				B7BD06011AF7E2D00060E2B5 /* MoreInfoViewController.m in Sources */,
-				B7045F941AFAAF2C001A82A7 /* TurnByTurnViewController.m in Sources */,
 				B7BD05DA1AF7D7770060E2B5 /* AppDelegate.m in Sources */,
 				B7045F8F1AFAA561001A82A7 /* Location.m in Sources */,
 				B7BD05D71AF7D7770060E2B5 /* main.m in Sources */,

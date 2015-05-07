@@ -113,31 +113,12 @@
     return nil;
 }
 
-//- (void)didTapImageView:(UITapGestureRecognizer *)sender
-//{
-//
-//    id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
-//    CLLocationCoordinate2D coord = [annotation coordinate];
-//    
-//    MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
-//    
-//    MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
-//    
-//    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
-//
-//    
-//    NSLog(@"%f", coord.latitude);
-//}
-
 - (void)CallMapsApp
 {
-        id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
-    
-        MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
-    
-        MKMapItem* destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
-    
-        [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
+    id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
+    MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+    MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
     
 }
 
@@ -145,21 +126,13 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     [mapView removeOverlay:self.routeDetails.polyline];
-    
     id<MKAnnotation> annotation = view.annotation;
-
     MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
-    
     MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
-    
     [directionsRequest setSource:[MKMapItem mapItemForCurrentLocation]];
-    
     [directionsRequest setDestination:[[MKMapItem alloc] initWithPlacemark:placeMark]];
-    
     directionsRequest.transportType = MKDirectionsTransportTypeWalking;
-    
     MKDirections *directions = [[MKDirections alloc] initWithRequest:directionsRequest];
-    
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
         
         if (error)
