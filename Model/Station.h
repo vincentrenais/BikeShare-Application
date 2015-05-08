@@ -15,9 +15,10 @@
 @property (strong,nonatomic) NSNumber *availableDocks;
 @property (strong,nonatomic) NSNumber *availableBikes;
 @property (strong,nonatomic) NSString *statusValue;
-@property (strong,nonatomic) NSNumber *location;
 @property (strong,nonatomic) NSNumber *latitude;
 @property (strong,nonatomic) NSNumber *longitude;
+@property (nonatomic) CLLocationDistance distance;
 @property (nonatomic) CLLocationCoordinate2D coordinate;
+@property (strong, nonatomic) CLLocation *location;
 
 @end

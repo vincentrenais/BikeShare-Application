@@ -7,10 +7,13 @@
 //
 
 @import UIKit;
+@import CoreLocation;
 
 #import "Station.h"
 
-@interface MoreInfoViewController : UIViewController
+@interface MoreInfoViewController : UIViewController <CLLocationManagerDelegate>
 
+@property (strong,nonatomic) NSMutableArray *arrayOfStations;
+@property (strong,nonatomic) CLLocationManager *locationManager;
 
 @end

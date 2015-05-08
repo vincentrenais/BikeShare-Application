@@ -46,7 +46,6 @@
              {
                  Station *station = [[Station alloc]init];
                  
-                 station.location = dicts[@"id"];
                  station.stationName = dicts[@"stationName"];
                  station.availableDocks = dicts[@"availableDocks"];
                  station.latitude = dicts[@"latitude"];
@@ -54,6 +53,8 @@
                  station.statusValue = dicts[@"statusValue"];
                  station.availableBikes = dicts[@"availableBikes"];
                  station.coordinate = CLLocationCoordinate2DMake([station.latitude doubleValue], [station.longitude doubleValue]);
+                 station.location = [[CLLocation alloc]initWithLatitude:[station.latitude doubleValue] longitude:[station.longitude doubleValue]];
+                 
                  
                  [[StationManager sharedList].arrayOfStations addObject:station];
              }

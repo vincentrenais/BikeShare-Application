@@ -33,7 +33,7 @@
     
     if(IS_OS_8_OR_LATER) {
         [self.locationManager requestWhenInUseAuthorization];
-        [self.locationManager requestAlwaysAuthorization];
+//        [self.locationManager requestAlwaysAuthorization];
     }
     [self.locationManager startUpdatingLocation];
     self.mapView.showsUserLocation = YES;
