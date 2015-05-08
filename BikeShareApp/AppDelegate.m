@@ -19,18 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    MapVC *mapVC = [[MapVC alloc]init];
-    mapVC.view.backgroundColor = [UIColor whiteColor];
-    UINavigationController *mapNC = [[UINavigationController alloc]initWithRootViewController:mapVC];
-    
-    
     ClosestStationVC *closestStationVC = [[ClosestStationVC alloc]init];
     UINavigationController *closestStationNC = [[UINavigationController alloc]initWithRootViewController:closestStationVC];
     closestStationVC.view.backgroundColor = [UIColor whiteColor];
     
+    MapVC *mapVC = [[MapVC alloc]init];
+    mapVC.view.backgroundColor = [UIColor whiteColor];
+    UINavigationController *mapNC = [[UINavigationController alloc]initWithRootViewController:mapVC];
     
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
-    [tabBarController setViewControllers:@[mapNC,closestStationNC]];
+    [tabBarController setViewControllers:@[closestStationNC,mapNC]];
     
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];

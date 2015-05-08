@@ -19,7 +19,6 @@
 @end
 
 
-
 @implementation ClosestStationVC
 
 - (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -34,7 +33,8 @@
 }
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     // Do any additional setup after loading the view.
@@ -50,6 +50,25 @@
     UIImageView *imageView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"toronto_circle_logo"]];
     imageView.frame = CGRectMake(110, 100, 150, 150);
     [self.view addSubview:imageView];
+    
+    self.stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 300, 330, 50)];
+    self.stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
+    [self.view addSubview:self.stationNameLabel];
+    
+    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 370, 330, 50)];
+    self.availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
+    [self.view addSubview:self.availableBikesLabel];
+    
+    self.availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 430, 330, 50)];
+    self.availableDocksLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
+    [self.view addSubview:self.availableDocksLabel];
+    
+    UIButton *turnByTurnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    turnByTurnButton.frame = CGRectMake(25, 520, 330, 50);
+    turnByTurnButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
+    [turnByTurnButton setTitle:@"Get turn-by-turn directions" forState:UIControlStateNormal];
+    [turnByTurnButton addTarget:self action:@selector(callMapsApp) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:turnByTurnButton];
 }
 
 
@@ -65,36 +84,14 @@
              station = [self.arrayOfStations objectAtIndex:i];
              station.distance = [self.currentLocation distanceFromLocation:station.location];
          }
-         
          NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"distance" ascending:YES];
-         
          [self.arrayOfStations sortUsingDescriptors:@[sortDescriptor]];
          
          Station *closestStation = [[Station alloc]init];
-         
          closestStation = self.arrayOfStations[0];
-         
-         UILabel *stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 300, 330, 50)];
-         stationNameLabel.text = closestStation.stationName;
-         stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
-         [self.view addSubview:stationNameLabel];
-         
-         UILabel *availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 370, 330, 50)];
-         availableBikesLabel.text = [NSString stringWithFormat:@"Bikes available: %@",[closestStation.availableBikes stringValue]];
-         availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
-         [self.view addSubview:availableBikesLabel];
-         
-         UILabel *availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 430, 330, 50)];
-         availableDocksLabel.text = [NSString stringWithFormat:@"Docks available: %@",[closestStation.availableDocks stringValue]];
-         availableDocksLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
-         [self.view addSubview:availableDocksLabel];
-         
-         UIButton *turnByTurnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-         turnByTurnButton.frame = CGRectMake(25, 520, 330, 50);
-         turnByTurnButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
-         [turnByTurnButton setTitle:@"Get turn-by-turn directions" forState:UIControlStateNormal];
-         [turnByTurnButton addTarget:self action:@selector(callMapsApp) forControlEvents:UIControlEventTouchUpInside];
-         [self.view addSubview:turnByTurnButton];
+         self.stationNameLabel.text = closestStation.stationName;
+         self.availableBikesLabel.text = [NSString stringWithFormat:@"Bikes available: %@",[closestStation.availableBikes stringValue]];
+         self.availableDocksLabel.text = [NSString stringWithFormat:@"Docks available: %@",[closestStation.availableBikes stringValue]];
      }
                                                failure:^(NSError *error)
      {
@@ -106,8 +103,7 @@
 - (void)getCurrentLocation {
     self.locationManager.delegate = self;
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    [self.locationManager startUpdatingLocation];
-    
+    [self.locationManager startUpdatingLocation];    
 }
 
 - (void)callMapsApp
@@ -120,14 +116,12 @@
     [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
 }
 
-#pragma delegate methods
+#pragma - delegate methods
 
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
     self.currentLocation = newLocation;
 }
-
-
 
 @end

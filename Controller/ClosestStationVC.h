@@ -16,4 +16,8 @@
 @property (strong,nonatomic) NSMutableArray *arrayOfStations;
 @property (strong,nonatomic) CLLocationManager *locationManager;
 
+@property (strong,nonatomic) UILabel *stationNameLabel;
+@property (strong,nonatomic) UILabel *availableBikesLabel;
+@property (strong,nonatomic) UILabel *availableDocksLabel;
+
 @end

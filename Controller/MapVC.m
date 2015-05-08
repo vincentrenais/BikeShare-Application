@@ -79,10 +79,9 @@
     MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
     MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
     [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
-    
 }
 
-#pragma delegate methods
+#pragma - delegate methods
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
