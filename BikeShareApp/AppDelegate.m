@@ -7,8 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "MapViewController.h"
-#import "MoreInfoViewController.h"
+#import "MapVC.h"
+#import "ClosestStationVC.h"
 
 @interface AppDelegate ()
 
@@ -20,19 +20,22 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    MapViewController *mapViewController = [[MapViewController alloc]init];
-    mapViewController.title = @"Maps";
+    MapVC *mapVC = [[MapVC alloc]init];
     
-    MoreInfoViewController *moreInfoViewController = [[MoreInfoViewController alloc]init];
-    moreInfoViewController.title = @"More Info";
+    UINavigationController *mapNC = [[UINavigationController alloc]initWithRootViewController:mapVC];
     
-    mapViewController.view.backgroundColor = [UIColor whiteColor];
+    ClosestStationVC *closestStationVC = [[ClosestStationVC alloc]init];
     
-    moreInfoViewController.view.backgroundColor = [UIColor whiteColor];
+    
+    UINavigationController *closestStationNC = [[UINavigationController alloc]initWithRootViewController:closestStationVC];
+    
+    mapVC.view.backgroundColor = [UIColor whiteColor];
+    
+    closestStationVC.view.backgroundColor = [UIColor whiteColor];
     
     UITabBarController *tabBarController = [[UITabBarController alloc]init];
     
-    [tabBarController setViewControllers:@[mapViewController,moreInfoViewController]];
+    [tabBarController setViewControllers:@[mapNC,closestStationNC]];
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = tabBarController;

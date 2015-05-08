@@ -1,24 +1,34 @@
 //
-//  MapViewController.m
+//  MapVC.m
 //  BikeShareApp
 //
 //  Created by Vincent Renais on 2015-05-04.
 //  Copyright (c) 2015 Vincent Renais. All rights reserved.
 //
 
-#import "MapViewController.h"
+#import "MapVC.h"
 
 #define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
 
-@interface MapViewController ()
+@interface MapVC ()
 
 @property MKRoute *routeDetails;
 
 @end
 
 
-@implementation MapViewController
+@implementation MapVC
 
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self)
+    {
+        self.title = @"Stations Map";
+        self.tabBarItem.image = [UIImage imageNamed:@"map_tab_icon"];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,6 +72,17 @@
         [alert show];
     }];
 }
+
+- (void)CallMapsApp
+{
+    id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
+    MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+    MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
+    
+}
+
+#pragma delegate methods
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
@@ -113,15 +134,6 @@
     return nil;
 }
 
-- (void)CallMapsApp
-{
-    id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
-    MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
-    MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
-    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
-    
-}
-
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
@@ -146,6 +158,7 @@
         }
     }];
 }
+
 
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer  * routeLineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:self.routeDetails.polyline];

@@ -1,5 +1,5 @@
 //
-//  MoreInfoViewController.h
+//  ClosestStationVC.h
 //  BikeShareApp
 //
 //  Created by Vincent Renais on 2015-05-04.
@@ -11,7 +11,7 @@
 
 #import "Station.h"
 
-@interface MoreInfoViewController : UIViewController <CLLocationManagerDelegate>
+@interface ClosestStationVC : UIViewController <CLLocationManagerDelegate>
 
 @property (strong,nonatomic) NSMutableArray *arrayOfStations;
 @property (strong,nonatomic) CLLocationManager *locationManager;
