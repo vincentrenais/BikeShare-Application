@@ -18,24 +18,20 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
     
     MapVC *mapVC = [[MapVC alloc]init];
-    
+    mapVC.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *mapNC = [[UINavigationController alloc]initWithRootViewController:mapVC];
     
+    
     ClosestStationVC *closestStationVC = [[ClosestStationVC alloc]init];
-    
-    
     UINavigationController *closestStationNC = [[UINavigationController alloc]initWithRootViewController:closestStationVC];
-    
-    mapVC.view.backgroundColor = [UIColor whiteColor];
-    
     closestStationVC.view.backgroundColor = [UIColor whiteColor];
     
-    UITabBarController *tabBarController = [[UITabBarController alloc]init];
     
+    UITabBarController *tabBarController = [[UITabBarController alloc]init];
     [tabBarController setViewControllers:@[mapNC,closestStationNC]];
+    
     
     self.window = [[UIWindow alloc]initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window.rootViewController = tabBarController;

@@ -6,8 +6,6 @@
 //  Copyright (c) 2015 Vincent Renais. All rights reserved.
 //
 
-
-
 #import "ClosestStationVC.h"
 #import "StationManager.h"
 
@@ -78,18 +76,25 @@
          
          UILabel *stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 300, 330, 50)];
          stationNameLabel.text = closestStation.stationName;
-         stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:30];
+         stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
          [self.view addSubview:stationNameLabel];
          
-         UILabel *availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 400, 330, 50)];
+         UILabel *availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 370, 330, 50)];
          availableBikesLabel.text = [NSString stringWithFormat:@"Bikes available: %@",[closestStation.availableBikes stringValue]];
          availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
          [self.view addSubview:availableBikesLabel];
          
-         UILabel *availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 450, 330, 50)];
+         UILabel *availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 430, 330, 50)];
          availableDocksLabel.text = [NSString stringWithFormat:@"Docks available: %@",[closestStation.availableDocks stringValue]];
          availableDocksLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
          [self.view addSubview:availableDocksLabel];
+         
+         UIButton *turnByTurnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+         turnByTurnButton.frame = CGRectMake(25, 520, 330, 50);
+         turnByTurnButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
+         [turnByTurnButton setTitle:@"Get turn-by-turn directions" forState:UIControlStateNormal];
+         [turnByTurnButton addTarget:self action:@selector(callMapsApp) forControlEvents:UIControlEventTouchUpInside];
+         [self.view addSubview:turnByTurnButton];
      }
                                                failure:^(NSError *error)
      {
@@ -105,7 +110,15 @@
     
 }
 
-
+- (void)callMapsApp
+{
+    Station *closestStation = [[Station alloc]init];
+    closestStation = self.arrayOfStations[0];
+    CLLocationCoordinate2D annotation = closestStation.coordinate;
+    MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation addressDictionary:nil];
+    MKMapItem *destination =  [[MKMapItem alloc] initWithPlacemark:placeMark];
+    [destination openInMapsWithLaunchOptions:@{MKLaunchOptionsDirectionsModeKey:MKLaunchOptionsDirectionsModeWalking}];
+}
 
 #pragma delegate methods
 
