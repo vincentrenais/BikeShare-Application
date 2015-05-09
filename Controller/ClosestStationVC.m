@@ -53,27 +53,27 @@
     imageView.frame = CGRectMake(110, 100, 150, 150);
     [self.view addSubview:imageView];
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(25, 270, 330, 50)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(22, 270, 330, 50)];
     label.textColor = [UIColor grayColor];
     label.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
     label.text = @"The closest station is:";
     [self.view addSubview:label];
     
     
-    self.stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 310, 330, 50)];
+    self.stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 310, 330, 50)];
     self.stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
     [self.view addSubview:self.stationNameLabel];
     
-    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 390, 330, 50)];
+    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 390, 330, 50)];
     self.availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:23];
     [self.view addSubview:self.availableBikesLabel];
     
-    self.availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 440, 330, 50)];
+    self.availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 440, 330, 50)];
     self.availableDocksLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:23];
     [self.view addSubview:self.availableDocksLabel];
     
     UIButton *turnByTurnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    turnByTurnButton.frame = CGRectMake(25, 530, 330, 50);
+    turnByTurnButton.frame = CGRectMake(22, 530, 330, 50);
     turnByTurnButton.layer.borderWidth = 1.0f;
     turnByTurnButton.layer.borderColor = [UIColor grayColor].CGColor;
     turnByTurnButton.layer.cornerRadius = 7.0f;
