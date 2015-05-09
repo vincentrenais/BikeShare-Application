@@ -60,9 +60,9 @@
         for (Station *station in self.arrayOfStations) {
             MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc]init];
             myAnnotation.coordinate = station.coordinate;
-            myAnnotation.title = @"<- Turn by turn - Route ->";
+            myAnnotation.title = station.stationName;
             station.stationName = [station.stationName substringToIndex:15];
-            myAnnotation.subtitle = [NSString stringWithFormat:@"%@... - %@ bikes - %@ docks", station.stationName, station.availableBikes, station.availableDocks];
+            myAnnotation.subtitle = [NSString stringWithFormat:@"Bikes: %@ - Docks: %@", station.availableBikes, station.availableDocks];
             [self.mapView addAnnotation:myAnnotation];
         }
     }
@@ -162,7 +162,7 @@
 -(MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     MKPolylineRenderer  * routeLineRenderer = [[MKPolylineRenderer alloc] initWithPolyline:self.routeDetails.polyline];
     routeLineRenderer.strokeColor = [UIColor redColor];
-    routeLineRenderer.lineWidth = 5;
+    routeLineRenderer.lineWidth = 6;
     return routeLineRenderer;
 }
 

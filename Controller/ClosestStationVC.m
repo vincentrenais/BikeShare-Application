@@ -51,11 +51,18 @@
     imageView.frame = CGRectMake(110, 100, 150, 150);
     [self.view addSubview:imageView];
     
-    self.stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 300, 330, 50)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(25, 270, 330, 50)];
+    label.textColor = [UIColor grayColor];
+    label.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
+    label.text = @"The closest station is:";
+    [self.view addSubview:label];
+    
+    
+    self.stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 310, 330, 50)];
     self.stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
     [self.view addSubview:self.stationNameLabel];
     
-    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 370, 330, 50)];
+    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 380, 330, 50)];
     self.availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
     [self.view addSubview:self.availableBikesLabel];
     
@@ -91,7 +98,7 @@
          closestStation = self.arrayOfStations[0];
          self.stationNameLabel.text = closestStation.stationName;
          self.availableBikesLabel.text = [NSString stringWithFormat:@"Bikes available: %@",[closestStation.availableBikes stringValue]];
-         self.availableDocksLabel.text = [NSString stringWithFormat:@"Docks available: %@",[closestStation.availableBikes stringValue]];
+         self.availableDocksLabel.text = [NSString stringWithFormat:@"Docks available: %@",[closestStation.availableDocks stringValue]];
      }
                                                failure:^(NSError *error)
      {
