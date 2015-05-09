@@ -61,7 +61,7 @@
     
     
     self.stationNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 310, 330, 50)];
-    self.stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
+    self.stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:35];
     [self.view addSubview:self.stationNameLabel];
     
     self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(22, 390, 330, 50)];
