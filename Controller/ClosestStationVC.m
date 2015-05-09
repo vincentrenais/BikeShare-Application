@@ -78,7 +78,7 @@
     turnByTurnButton.layer.borderColor = [UIColor grayColor].CGColor;
     turnByTurnButton.layer.cornerRadius = 7.0f;
     turnByTurnButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
-    [turnByTurnButton setTitle:@"Get turn-by-turn directions" forState:UIControlStateNormal];
+    [turnByTurnButton setTitle:@"Turn-by-turn directions" forState:UIControlStateNormal];
     [turnByTurnButton addTarget:self action:@selector(callMapsApp) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:turnByTurnButton];
 }
