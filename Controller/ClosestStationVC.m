@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Vincent Renais. All rights reserved.
 //
 
+@import QuartzCore;
+
 #import "ClosestStationVC.h"
 #import "StationManager.h"
 
@@ -62,16 +64,19 @@
     self.stationNameLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:40];
     [self.view addSubview:self.stationNameLabel];
     
-    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 380, 330, 50)];
-    self.availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
+    self.availableBikesLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 390, 330, 50)];
+    self.availableBikesLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:23];
     [self.view addSubview:self.availableBikesLabel];
     
-    self.availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 430, 330, 50)];
-    self.availableDocksLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:25];
+    self.availableDocksLabel = [[UILabel alloc]initWithFrame:CGRectMake(25, 440, 330, 50)];
+    self.availableDocksLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:23];
     [self.view addSubview:self.availableDocksLabel];
     
     UIButton *turnByTurnButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    turnByTurnButton.frame = CGRectMake(25, 520, 330, 50);
+    turnByTurnButton.frame = CGRectMake(25, 530, 330, 50);
+    turnByTurnButton.layer.borderWidth = 1.0f;
+    turnByTurnButton.layer.borderColor = [UIColor grayColor].CGColor;
+    turnByTurnButton.layer.cornerRadius = 7.0f;
     turnByTurnButton.titleLabel.font = [UIFont fontWithName:@"Helvetica-Light" size:20];
     [turnByTurnButton setTitle:@"Get turn-by-turn directions" forState:UIControlStateNormal];
     [turnByTurnButton addTarget:self action:@selector(callMapsApp) forControlEvents:UIControlEventTouchUpInside];
