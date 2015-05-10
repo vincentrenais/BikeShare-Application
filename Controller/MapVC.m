@@ -33,18 +33,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view, typically from a nib.
-    
+    // Add a map that fills the whole screen.
     _mapView = [[MKMapView alloc] initWithFrame:self.view.frame];
     
     [self.view addSubview:_mapView];
     self.mapView.delegate = self;
+   
+    // Gets the user's location
     self.locationManager = [[CLLocationManager alloc] init];
     
+    // Check if the user is using iOS 8, if so ask authorization to use his location.
     if(IS_OS_8_OR_LATER) {
         [self.locationManager requestWhenInUseAuthorization];
-//        [self.locationManager requestAlwaysAuthorization];
     }
+    
     [self.locationManager startUpdatingLocation];
     self.mapView.showsUserLocation = YES;
     self.mapView.showsPointsOfInterest = YES;
@@ -53,6 +55,8 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+    // The following piece of code enumerates through the array of stations and assign the properties for the annotation's Title, Subtitle, Available bikes and Docks.
+    
     [[StationManager sharedList] requestURLWithSuccess:^(NSMutableArray *array)
     {
         self.arrayOfStations = array;
@@ -73,6 +77,8 @@
     }];
 }
 
+// This method is called when the user tap on the annotation left button. It takes the user to Maps passing the station's coordinates.
+
 - (void)CallMapsApp
 {
     id<MKAnnotation> annotation = [self.mapView.selectedAnnotations firstObject];
@@ -85,6 +91,7 @@
 
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation {
+    // A dispatch_once token is used so the location is only updated once.
     static dispatch_once_t token;
     dispatch_once(&token, ^{
        [self.mapView setRegion:MKCoordinateRegionMake(userLocation.coordinate, MKCoordinateSpanMake(0.01f, 0.01f)) animated:YES];
@@ -94,7 +101,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    // If it's the user location, just return nil.
+    // If it's the user location, don't show an annotation.
     if ([annotation isKindOfClass:[MKUserLocation class]])
     {
         return nil;
@@ -121,7 +128,7 @@
         UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
         pinView.rightCalloutAccessoryView = rightButton;
         
-        // Add an image on the left.
+        // Add an image on the left. When tapped Maps will open.
         UIImageView *iconView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"turn_by_turn.png"]];
         pinView.leftCalloutAccessoryView = iconView;
         iconView.userInteractionEnabled = YES;
@@ -136,9 +143,13 @@
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
+    // First remove any overlay on the map.
     [mapView removeOverlay:self.routeDetails.polyline];
+    
+    // Create a MKannotation for the user's current annotation.
     id<MKAnnotation> annotation = view.annotation;
     MKPlacemark *placeMark = [[MKPlacemark alloc] initWithCoordinate:annotation.coordinate addressDictionary:nil];
+    // Create a MLdirectionRequest to pass to MKDirections.
     MKDirectionsRequest *directionsRequest = [[MKDirectionsRequest alloc] init];
     [directionsRequest setSource:[MKMapItem mapItemForCurrentLocation]];
     [directionsRequest setDestination:[[MKMapItem alloc] initWithPlacemark:placeMark]];
